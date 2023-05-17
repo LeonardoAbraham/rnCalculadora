@@ -16,7 +16,7 @@ Ejecutar proyecto con yarn en emulador android
 Ejecutar proyecto con yarn en emulador ios
 
 ```bash
-  npx react-native run-android
+  npx react-native run-ios
 ```
 
 ## Imagenes
