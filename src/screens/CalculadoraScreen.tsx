@@ -12,9 +12,51 @@ export const CalculadoraScreen = () => {
         setNumero('0');
     }
 
-    const armarNumero = ( numeroTexto: String ) => {
-        setNumero( numero + numeroTexto );
+    const armarNumero = ( numeroTexto: string ) => {
+
+        // No aceptar doble punto
+        if( numero.includes('.') && numeroTexto === '.' ) return;
+
+
+        if(numero.startsWith('0') || numeroTexto.startsWith('-0') ){
+
+            //Punto decimal
+            if(numeroTexto === '.'){
+                setNumero(numero + numeroTexto);
+            }
+            //Evaluar si es otro cero, y hay un punto
+            else if(numeroTexto === '0' && numero.includes('.')){
+                setNumero(numero + numeroTexto);
+            }
+            // Evaluar si es diferente de cero y no tiene un punto
+            else if ( numeroTexto !== '0' && !numero.includes('.') ){
+                setNumero(numeroTexto);
+            }
+            //Evitar 0000.0
+            else if( numeroTexto === '0' && !numero.includes('.') ){
+                setNumero(numero);
+            }
+            else{
+                setNumero(numero + numeroTexto);
+            }
+
+        }
+        else{
+            setNumero( numero + numeroTexto );
+        }
+
     }
+
+    const positivoNegativo = () => {
+        if( numero.includes('-') ) {
+            setNumero( numero.replace('-', '') );
+        }
+        else {
+            setNumero('-'+numero);
+        }
+    }
+
+    
 
     return (
         <View style={styles.calculadoraContainer}>
@@ -30,7 +72,7 @@ export const CalculadoraScreen = () => {
             {/* Fila de botones */}
             <View style={styles.fila}>
                 <BotonCalc texto="C"   color="#9B9B9B" accion={ limpiar } />
-                <BotonCalc texto="+/-" color="#9B9B9B" accion={ limpiar } />
+                <BotonCalc texto="+/-" color="#9B9B9B" accion={ positivoNegativo } />
                 <BotonCalc texto="del" color="#9B9B9B" accion={ limpiar } />
                 <BotonCalc texto="/"   color="#FF9427" accion={ limpiar } />
             </View>

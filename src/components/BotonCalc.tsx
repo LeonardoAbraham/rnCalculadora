@@ -2,10 +2,10 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { styles } from '../theme/appTheme';
 
 interface Props {
-    texto: String;
+    texto: string;
     color?: any ;
     ancho?: boolean;
-    accion: (numeroTexto: String) => void;
+    accion: (numeroTexto: string) => void;
 }
 
 export const BotonCalc = ( { texto, color = '#2D2D2D', ancho=false, accion }:Props ) => {
